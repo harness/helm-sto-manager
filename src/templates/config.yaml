@@ -25,7 +25,7 @@ data:
   DEFAULT_INTERNAL_IMAGE_CONNECTOR: {{ .Values.defaultInternalImageConnector }}
   API_URL: '{{ .Values.global.loadbalancerURL }}/ng/#'
   DEFAULT_CPU_LIMIT: "500"
-  DEFAULT_MEMORY_LIMIT: {{ .Values.java.memory_limit | quote }}
+  DEFAULT_MEMORY_LIMIT: {{ .Values.java.memoryLimit | quote }}
   MONGO_INDEX_MANAGER_MODE: AUTO
   STACK_DRIVER_LOGGING_ENABLED: "false"
   GOOGLE_APPLICATION_CREDENTIALS: /opt/harness/svc/cloud_stackdriver.json
