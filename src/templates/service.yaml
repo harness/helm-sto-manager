@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sto-manager
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "sto-manager.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: {{ .Values.service.grpcport }}
+      targetPort: sto-mgr-grpc
+      name: sto-mgr-grpc
+  selector:
+    {{- include "sto-manager.selectorLabels" . | nindent 4 }}
