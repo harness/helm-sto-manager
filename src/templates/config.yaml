@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sto-manager
+  namespace: {{ .Release.Namespace }}
+data:
+  DEPLOY_MODE: KUBERNETES_ONPREM
+  MEMORY: {{ .Values.java.memory | quote }}
+  STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
+  STO_SERVICE_GLOBAL_TOKEN: "token"
+  NG_MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/ng/api/'
+  MANAGER_TARGET: harness-manager:9879
+  MANAGER_AUTHORITY: default-authority.harness.io
+  MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/api/'
+  VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
+  SCM_SERVICE_URI: "scm:8091"
+  LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
+  TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
+  ENABLE_APPDYNAMICS: "false"
+  DISABLE_NEW_RELIC: "true"
+  SHOULD_CONFIGURE_WITH_PMS: "true"
+  PMS_TARGET: pipeline-service:12011
+  PMS_AUTHORITY: default-authority.harness.io
+  GRPC_SERVER_PORT: "9979"
+  DEFAULT_INTERNAL_IMAGE_CONNECTOR: {{ .Values.defaultInternalImageConnector }}
+  API_URL: '{{ .Values.global.loadbalancerURL }}/ng/#'
+  DEFAULT_CPU_LIMIT: "500"
+  DEFAULT_MEMORY_LIMIT: {{ .Values.java.memory_limit | quote }}
+  MONGO_INDEX_MANAGER_MODE: AUTO
+  STACK_DRIVER_LOGGING_ENABLED: "false"
+  GOOGLE_APPLICATION_CREDENTIALS: /opt/harness/svc/cloud_stackdriver.json
+  EVENTS_FRAMEWORK_REDIS_URL: 'redis://localhost:6379'
+  EVENTS_FRAMEWORK_USE_SENTINEL: "true"
+  EVENTS_FRAMEWORK_SENTINEL_MASTER_NAME: 'harness-redis'
+  EVENTS_FRAMEWORK_REDIS_SENTINELS: 'redis://redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace }}:26379'
+  EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "true"
+  EVENTS_FRAMEWORK_REDIS_SSL_CA_TRUST_STORE_PATH: /opt/harness/svc/redis_labs_ca_truststore
+  USE_REDIS_FOR_SDK_RESPONSE_EVENTS: "true"
+  ENABLE_DASHBOARD_TIMESCALE: "true"
+  TIMESCALE_URI: 'jdbc:postgresql://timescaledb-single-chart.{{ .Release.Namespace }}:5432/harness'
+  CACHE_BACKEND: REDIS
+  CACHE_CONFIG_USE_SENTINEL: "true"
+  CACHE_CONFIG_SENTINEL_MASTER_NAME: "harness-redis"
+  CACHE_CONFIG_REDIS_SENTINELS: 'redis://redis-sentinel-harness-announce-0.{{ .Release.Namespace  }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace  }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace  }}:26379'
+  #CACHE_NAMESPACE: {{.Values.ENV}}
+  {{- if .Values.scalabilityTest}}
+  PLAN_CREATOR_SERVICE_EXECUTOR_POOL_CORE_SIZE: "150"
+  PLAN_CREATOR_SERVICE_EXECUTOR_POOL_MAX_SIZE: "200"
+  ASYNC_DELEGATE_RESPONSE_THREAD_COUNT: "15"
+  {{- end}}
+  ENFORCEMENT_CHECK_ENABLED: "false"
+  PMS_SDK_ORCHESTRATION_EVENT_POOL_CORE_SIZE: "15"
+#  VERSION: 1.0.<+regex.extract("^[0-9]+", <+artifact.tag>)>
+  S3_UPLOAD_IMAGE: "bewithaman/s3:latest"
+  USE_DMS: "false"
+  SECURITY_IMAGE: harness/sto-plugin:latest
