@@ -9,7 +9,7 @@ maxUnavailable: 0
 
 java:
   memory: 2500
-  memory_limit: 600
+  memoryLimit: 600
 image:
   repository: harness/stomanager-signed
   pullPolicy: IfNotPresent
@@ -27,7 +27,7 @@ s3UploadImage:
 nameOverride: ""
 fullnameOverride: ""
 
-ng_service_account: "test"
+ngServiceAccount: "test"
 redislabsCATruststore: "test"
 
 defaultInternalImageConnector: "test"
