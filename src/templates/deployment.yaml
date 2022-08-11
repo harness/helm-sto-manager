@@ -66,8 +66,8 @@ spec:
             - name : TIMESCALEDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: timescaledb-single-chart-passwords
-                  key: postgres
+                  name: harness-secret
+                  key: timescaledbPostgresPassword
             - name: TIMESCALEDB_USERNAME
               value: postgres
             - name: TIMESCALE_URI
