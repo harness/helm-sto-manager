@@ -67,7 +67,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: harness-secrets
-                  key: postgresdbAdminPassword
+                  key: timescaledbPostgresPassword
             - name: TIMESCALEDB_USERNAME
               value: postgres
             - name: TIMESCALE_URI
