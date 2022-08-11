@@ -56,30 +56,30 @@ spec:
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-replicaset-chart-admin
-                  key: user
+                  name: harness-secrets
+                  key: mongodbUsername
             - name: MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-replicaset-chart-admin
-                  key: password
+                  name: harness-secrets
+                  key: mongodbPassword
             - name : TIMESCALEDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: harness-secret
+                  name: harness-secrets
                   key: timescaledbPostgresPassword
             - name: TIMESCALEDB_USERNAME
               value: postgres
             - name: TIMESCALE_URI
               value: 'jdbc:postgresql://timescaledb-single-chart.{{ .Release.Namespace }}:5432/harness'
             - name: MONGO_URI
-              value: 'mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb-replicaset-chart-0.mongodb-replicaset-chart.{{ .Release.Namespace }}.svc:27017/harness?authSource=admin'
+              value: {{ include "harnesscommon.database.mongo" (dict "database" "harness" "context" $) }}
             - name: STOMANAGER_MONGO_URI
-              value: 'mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb-replicaset-chart-0.mongodb-replicaset-chart.{{ .Release.Namespace }}.svc:27017/harness-sto?authSource=admin'
+              value: {{ include "harnesscommon.database.mongo" (dict "database" "harness-sto" "context" $) }}
             - name: PMS_MONGO_URI
-              value: 'mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb-replicaset-chart-0.mongodb-replicaset-chart.{{ .Release.Namespace }}.svc:27017/pms-harness?authSource=admin'
+              value: {{ include "harnesscommon.database.mongo" (dict "database" "pms-harness" "context" $) }}
             - name: NOTIFICATION_MONGO_URI
-              value: 'mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb-replicaset-chart-0.mongodb-replicaset-chart.{{ .Release.Namespace }}.svc:27017/notifications?authSource=admin'
+              value: {{ include "harnesscommon.database.mongo" (dict "database" "notifications" "context" $) }}
           livenessProbe:
             httpGet:
               path: /health
