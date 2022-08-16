@@ -46,10 +46,9 @@ spec:
             - name: http
               containerPort: {{.Values.service.port}}
               protocol: TCP
-            - name: sto-mgr-grpc
+            - name: grpc-sto-mgr
               containerPort: {{.Values.service.grpcport}}
               protocol: TCP
-
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
               value: token
