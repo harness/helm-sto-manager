@@ -51,7 +51,7 @@ spec:
               protocol: TCP
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
-              alueFrom:
+              valueFrom:
                 secretKeyRef:
                   name: harness-secrets
                   key: stoAppHarnessToken
