@@ -52,7 +52,10 @@ spec:
 
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
-              value: token
+              alueFrom:
+                secretKeyRef:
+                  name: harness-secrets
+                  key: stoAppHarnessToken
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
