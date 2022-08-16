@@ -13,7 +13,7 @@ spec:
       protocol: TCP
       name: http
     - port: {{ .Values.service.grpcport }}
-      targetPort: sto-mgr-grpc
-      name: sto-mgr-grpc
+      targetPort: grpc-sto-mgr
+      name: grpc-sto-mgr
   selector:
     {{- include "sto-manager.selectorLabels" . | nindent 4 }}
