@@ -17,12 +17,14 @@ image:
   tag: "76000-000"
 
 securityImage:
-  repository: harness/sto-plugin
-  tag: latest
+  image:
+    repository: harness/sto-plugin
+    tag: latest
 
 s3UploadImage:
-  repository: bewithaman/s3
-  tag: latest
+  image:
+    repository: bewithaman/s3
+    tag: latest
 
 nameOverride: ""
 fullnameOverride: ""
