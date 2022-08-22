@@ -72,23 +72,15 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-Create the name of the redis image to use
+Create the name of the security image to use
 */}}
-{{- define "sto-manager.s3UploadImage" -}}
-{{- if .Values.global.imageRegistry -}}
-{{- printf "%s/%s:%s" .Values.global.imageRegistry ((splitList "/" .Values.s3UploadImage.image.repository) | last) .Values.s3UploadImage.image.tag -}}
-{{- else -}}
-{{- printf "%s:%s" .Values.s3UploadImage.image.repository .Values.s3UploadImage.image.tag -}}
-{{- end -}}
+{{- define "sto-manager.securityImage" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.securityImage.image "global" .Values.global) }}
 {{- end }}
 
 {{/*
-Create the name of the sentinet image to use
+Create the name of the s3 image to use
 */}}
-{{- define "sto-manager.securityImage" -}}
-{{- if .Values.global.imageRegistry -}}
-{{- printf "%s/%s:%s" .Values.global.imageRegistry ((splitList "/" .Values.securityImage.image.repository) | last) .Values.securityImage.image.tag -}}
-{{- else -}}
-{{- printf "%s:%s" .Values.securityImage.image.repository .Values.securityImage.image.tag -}}
-{{- end -}}
+{{- define "sto-manager.s3UploadImage" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.s3UploadImage.image "global" .Values.global) }}
 {{- end }}
