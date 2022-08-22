@@ -37,7 +37,7 @@ spec:
         - name: sto-manager
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ include "harnesscommon.names.imagename" . }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
@@ -46,15 +46,13 @@ spec:
             - name: http
               containerPort: {{.Values.service.port}}
               protocol: TCP
-            - name: grpc-sto-mgr
+            - name: sto-mgr-grpc
               containerPort: {{.Values.service.grpcport}}
               protocol: TCP
+
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: harness-secrets
-                  key: stoAppHarnessToken
+              value: token
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:

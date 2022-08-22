@@ -11,20 +11,28 @@ java:
   memory: 2500
   memoryLimit: 600
 image:
+  registry: docker.io
   repository: harness/stomanager-signed
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "76000-000"
+  digest: ""
 
 securityImage:
   image:
+    registry: docker.io
     repository: harness/sto-plugin
+    pullPolicy: IfNotPresent
     tag: latest
+    digest: ""
 
 s3UploadImage:
   image:
+    registry: docker.io
     repository: bewithaman/s3
+    pullPolicy: IfNotPresent
     tag: latest
+    digest: ""
 
 nameOverride: ""
 fullnameOverride: ""

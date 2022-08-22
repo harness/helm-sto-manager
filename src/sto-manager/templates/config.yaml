@@ -7,14 +7,15 @@ data:
   DEPLOY_MODE: KUBERNETES_ONPREM
   MEMORY: {{ .Values.java.memory | quote }}
   STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
-  NG_MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/ng/api/'
+  STO_SERVICE_GLOBAL_TOKEN: "token"
+  NG_MANAGER_URL: 'http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090/api/'
   MANAGER_TARGET: harness-manager:9879
   MANAGER_AUTHORITY: default-authority.harness.io
-  MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/api/'
+  MANAGER_URL: 'http://harness-manager.{{ .Release.Namespace }}.svc.cluster.local:9090/api/'
   VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
   SCM_SERVICE_URI: "scm:8091"
   LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
-  TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
+  TI_SERVICE_ENDPOINT: 'http://ti-service.{{ .Release.Namespace }}.svc.cluster.local:8078/'
   ENABLE_APPDYNAMICS: "false"
   DISABLE_NEW_RELIC: "true"
   SHOULD_CONFIGURE_WITH_PMS: "true"
