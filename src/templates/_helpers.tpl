@@ -70,3 +70,25 @@ Create the name of the service account to use
 - { name: APP_DATABASE_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 - { name: APP_DB_MIGRATION_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 {{- end }}
+
+{{/*
+Create the name of the redis image to use
+*/}}
+{{- define "sto-manager.s3UploadImage" -}}
+{{- if .Values.global.imageRegistry -}}
+{{- printf "%s/%s:%s" .Values.global.imageRegistry ((splitList "/" .Values.s3UploadImage.image.repository) | last) .Values.s3UploadImage.image.tag -}}
+{{- else -}}
+{{- printf "%s:%s" .Values.s3UploadImage.image.repository .Values.s3UploadImage.image.tag -}}
+{{- end -}}
+{{- end }}
+
+{{/*
+Create the name of the sentinet image to use
+*/}}
+{{- define "sto-manager.securityImage" -}}
+{{- if .Values.global.imageRegistry -}}
+{{- printf "%s/%s:%s" .Values.global.imageRegistry ((splitList "/" .Values.securityImage.image.repository) | last) .Values.securityImage.image.tag -}}
+{{- else -}}
+{{- printf "%s:%s" .Values.securityImage.image.repository .Values.securityImage.image.tag -}}
+{{- end -}}
+{{- end }}
