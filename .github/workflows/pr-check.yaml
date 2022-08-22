@@ -49,7 +49,7 @@ jobs:
 
       - name: Run chart-testing (lint)
         working-directory: ./src/sto-manager
-        run: ct lint --target-branch=develop --charts=. --chart-repos=harness-common=https://harness.github.io/helm-common/charts,common=https://charts.bitnami.com/bitnami --validate-maintainers=false
+        run: ct lint --target-branch=develop --charts=. --chart-repos=harness-common=https://harness.github.io/helm-common,common=https://charts.bitnami.com/bitnami --validate-maintainers=false
 
       # - name: Create kind cluster/search
       #   uses: helm/kind-action@v1.2.0
