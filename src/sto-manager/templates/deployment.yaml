@@ -49,25 +49,24 @@ spec:
             - name: sto-mgr-grpc
               containerPort: {{.Values.service.grpcport}}
               protocol: TCP
-
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
               value: token
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: harness-secrets
-                  key: mongodbUsername
+                  name: {{ .Values.mongoSecrets.userName.name }}
+                  key: {{ .Values.mongoSecrets.userName.key }}
             - name: MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: harness-secrets
-                  key: mongodbPassword
+                  name: {{ .Values.mongoSecrets.password.name }}
+                  key: {{ .Values.mongoSecrets.password.key }}
             - name : TIMESCALEDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: harness-secrets
-                  key: timescaledbPostgresPassword
+                  name: {{ .Values.timescaleSecret.password.name }}
+                  key: {{ .Values.timescaleSecret.password.key }}
             - name: TIMESCALEDB_USERNAME
               value: postgres
             - name: TIMESCALE_URI

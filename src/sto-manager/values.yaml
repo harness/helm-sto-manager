@@ -34,6 +34,19 @@ s3UploadImage:
     tag: latest
     digest: ""
 
+mongoSecrets:
+  userName:
+    name: harness-secrets
+    key: mongodbUsername
+  password:
+    name: harness-secrets
+    key: mongodbPassword
+
+timescaleSecret:
+  password:
+    name: harness-secrets
+    key: timescaledbPostgresPassword
+
 nameOverride: ""
 fullnameOverride: ""
 
