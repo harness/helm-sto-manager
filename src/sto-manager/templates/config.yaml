@@ -10,7 +10,7 @@ data:
   STO_SERVICE_GLOBAL_TOKEN: "token"
   NG_MANAGER_URL: 'http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090/api/'
   MANAGER_TARGET: harness-manager:9879
-  MANAGER_AUTHORITY: default-authority.harness.io
+  MANAGER_AUTHORITY: harness-manager:9879
   MANAGER_URL: 'http://harness-manager.{{ .Release.Namespace }}.svc.cluster.local:9090/api/'
   VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
   SCM_SERVICE_URI: "scm:8091"
@@ -20,7 +20,7 @@ data:
   DISABLE_NEW_RELIC: "true"
   SHOULD_CONFIGURE_WITH_PMS: "true"
   PMS_TARGET: pipeline-service:12011
-  PMS_AUTHORITY: default-authority.harness.io
+  PMS_AUTHORITY: pipeline-service:12011
   GRPC_SERVER_PORT: "9979"
   DEFAULT_INTERNAL_IMAGE_CONNECTOR: {{ .Values.defaultInternalImageConnector }}
   API_URL: '{{ .Values.global.loadbalancerURL }}/ng/#'
