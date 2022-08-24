@@ -51,7 +51,7 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
-          - "-lapp=app.kubernetes.io/name:pipeline-service"
+          - "-lapp=pipeline-service"
       containers:
         - name: sto-manager
           securityContext:
