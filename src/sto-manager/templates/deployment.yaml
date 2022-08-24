@@ -46,7 +46,12 @@ spec:
         args:
           - "pod"
           - "-lapp=timescaledb-single-chart"
-
+      - name: wait-for-pipeline-service
+        image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
+        imagePullPolicy: IfNotPresent
+        args:
+          - "pod"
+          - "-lapp=app.kubernetes.io/name:pipeline-service"
       containers:
         - name: sto-manager
           securityContext:
