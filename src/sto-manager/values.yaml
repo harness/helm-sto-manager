@@ -18,6 +18,14 @@ image:
   tag: "76000-000"
   digest: ""
 
+waitForInitContainer:
+  image:
+    registry: docker.io
+    repository: harness/helm-init-container
+    pullPolicy: IfNotPresent
+    tag: "latest"
+    digest: ""
+
 securityImage:
   image:
     registry: docker.io
