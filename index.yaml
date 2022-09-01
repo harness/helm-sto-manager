@@ -3,6 +3,20 @@ entries:
   sto-manager:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-09-01T11:57:48.846940599Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 954666cbcd72c19c8280183b794237a9cb093c1863556b8129895183355684dd
+    name: sto-manager
+    type: application
+    urls:
+    - https://github.com/harness/helm-sto-manager/releases/download/sto-manager-0.2.9/sto-manager-0.2.9.tgz
+    version: 0.2.9
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-09-01T11:21:18.80002173Z"
     dependencies:
     - name: harness-common
@@ -151,4 +165,4 @@ entries:
     urls:
     - https://github.com/harness/helm-sto-manager/releases/download/sto-manager-0.2.0/sto-manager-0.2.0.tgz
     version: 0.2.0
-generated: "2022-09-01T11:21:18.80007013Z"
+generated: "2022-09-01T11:57:48.847116698Z"
