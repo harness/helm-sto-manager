@@ -85,6 +85,29 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+probes:
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    timeoutSeconds: 2
+    periodSeconds: 5
+    failureThreshold: 5
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
+    timeoutSeconds: 2
+    periodSeconds: 10
+    failureThreshold: 5
+  startupProbe:
+    httpGet:
+      path: /health
+      port: http
+    timeoutSeconds: 2
+    periodSeconds: 10
+    failureThreshold: 25
+
 service:
   type: ClusterIP
   port: 7090
