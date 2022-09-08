@@ -98,7 +98,7 @@ spec:
               value: {{ include "harnesscommon.database.mongo" (dict "database" "pms-harness" "context" $) }}
             - name: NOTIFICATION_MONGO_URI
               value: {{ include "harnesscommon.database.mongo" (dict "database" "notifications" "context" $) }}
-        {{- toYaml .Values.probes | nindent 8}}
+          {{- toYaml .Values.probes | nindent 10}}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
