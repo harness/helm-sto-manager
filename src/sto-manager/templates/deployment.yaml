@@ -98,22 +98,7 @@ spec:
               value: {{ include "harnesscommon.database.mongo" (dict "database" "pms-harness" "context" $) }}
             - name: NOTIFICATION_MONGO_URI
               value: {{ include "harnesscommon.database.mongo" (dict "database" "notifications" "context" $) }}
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: http
-            initialDelaySeconds: 60
-            timeoutSeconds: 5
-            periodSeconds: 5
-            failureThreshold: 8
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: http
-            initialDelaySeconds: 40
-            timeoutSeconds: 5
-            periodSeconds: 10
-            failureThreshold: 20
+          {{- toYaml .Values.probes | nindent 10}}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
