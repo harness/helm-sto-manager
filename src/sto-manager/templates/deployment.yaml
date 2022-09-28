@@ -70,7 +70,10 @@ spec:
               protocol: TCP
           env:
             - name: STO_SERVICE_GLOBAL_TOKEN
-              value: token
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.stoServiceGlobalToken.name }}
+                  key: {{ .Values.stoServiceGlobalToken.key }}
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:

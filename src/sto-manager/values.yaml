@@ -144,6 +144,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+stoServiceGlobalToken:
+  name: harness-secrets
+  key: stoAppHarnessToken
+
 nodeSelector: {}
 
 tolerations: []
