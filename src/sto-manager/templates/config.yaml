@@ -7,7 +7,6 @@ data:
   DEPLOY_MODE: KUBERNETES_ONPREM
   MEMORY: {{ .Values.java.memory | quote }}
   STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
-  STO_SERVICE_GLOBAL_TOKEN: "token"
   NG_MANAGER_URL: 'http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090/api/'
   MANAGER_TARGET: harness-manager:9879
   MANAGER_AUTHORITY: harness-manager:9879
