@@ -15,7 +15,7 @@ data:
   {{- if .Values.global.ingress.useSelfSignedCert }}
   LOG_SERVICE_ENDPOINT: 'http://log-service.{{ .Release.Namespace }}.svc.cluster.local:8079/'
   TI_SERVICE_ENDPOINT: 'http://ti-service.{{ .Release.Namespace }}.svc.cluster.local:8078/'
-  STO_SERVICE_ENDPOINT: 'http://sto.{{ .Release.Namespace }}.svc.cluster.local:4000/'
+  STO_SERVICE_ENDPOINT: 'http://sto-core.{{ .Release.Namespace }}.svc.cluster.local:4000/'
   {{- else }}
   LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
   TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
