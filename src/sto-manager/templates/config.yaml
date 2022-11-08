@@ -6,15 +6,21 @@ metadata:
 data:
   DEPLOY_MODE: KUBERNETES_ONPREM
   MEMORY: {{ .Values.java.memory | quote }}
-  STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
   MANAGER_TARGET: harness-manager:9879
   MANAGER_AUTHORITY: harness-manager:9879
   NG_MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/ng/api/'
   MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/api/'
   VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
   SCM_SERVICE_URI: "scm:8091"
-  LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
+  {{- if .Values.global.ingress.useSelfSignedCert }}
+  LOG_SERVICE_ENDPOINT: 'http://log-service.{{ .Release.Namespace }}.svc.cluster.local:8079/'
   TI_SERVICE_ENDPOINT: 'http://ti-service.{{ .Release.Namespace }}.svc.cluster.local:8078/'
+  STO_SERVICE_ENDPOINT: 'http://sto.{{ .Release.Namespace }}.svc.cluster.local:4000/'
+  {{- else }}
+  LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
+  TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
+  STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
+  {{- end }}
   ENABLE_APPDYNAMICS: "false"
   DISABLE_NEW_RELIC: "true"
   SHOULD_CONFIGURE_WITH_PMS: "true"
