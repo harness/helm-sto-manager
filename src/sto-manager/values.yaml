@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 global:
   loadbalancerURL: "https://test"
+  delegate:
+      airgapped: false
 replicaCount: 1
 maxSurge: 100%
 maxUnavailable: 0
