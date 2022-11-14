@@ -5,16 +5,25 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   DEPLOY_MODE: KUBERNETES_ONPREM
+  ADDON_IMAGE: harness/ci-addon:1.14.19
+  LE_IMAGE: harness/ci-lite-engine:1.14.22
   MEMORY: {{ .Values.java.memory | quote }}
-  STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
   MANAGER_TARGET: harness-manager:9879
   MANAGER_AUTHORITY: harness-manager:9879
-  NG_MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/ng/api/'
   MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/api/'
   VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
   SCM_SERVICE_URI: "scm:8091"
   LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
-  TI_SERVICE_ENDPOINT: 'http://ti-service.{{ .Release.Namespace }}.svc.cluster.local:8078/'
+  LOG_SERVICE_INTERNAL_ENDPOINT: 'http://log-service.{{ .Release.Namespace }}.svc.cluster.local:8079/'
+  TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
+  TI_SERVICE_INTERNAL_ENDPOINT: 'http://ti-service.{{ .Release.Namespace }}.svc.cluster.local:8078/'
+  STO_SERVICE_ENDPOINT:  '{{ .Values.global.loadbalancerURL }}/sto/'
+  STO_SERVICE_INTERNAL_ENDPOINT: 'http://sto-core.{{ .Release.Namespace }}.svc.cluster.local:4000/'
+  {{- if .Values.global.delegate.airgapped }}
+  NG_MANAGER_URL: 'http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090/'
+  {{- else }}
+  NG_MANAGER_URL: '{{ .Values.global.loadbalancerURL }}/ng/api/'
+  {{- end }}
   ENABLE_APPDYNAMICS: "false"
   DISABLE_NEW_RELIC: "true"
   SHOULD_CONFIGURE_WITH_PMS: "true"
@@ -22,7 +31,7 @@ data:
   PMS_AUTHORITY: pipeline-service:12011
   GRPC_SERVER_PORT: "9979"
   DEFAULT_INTERNAL_IMAGE_CONNECTOR: {{ .Values.defaultInternalImageConnector }}
-  API_URL: '{{ .Values.global.loadbalancerURL }}/ng/#'
+  API_URL: '{{ .Values.global.loadbalancerURL }}/ng/#/'
   DEFAULT_CPU_LIMIT: "500"
   DEFAULT_MEMORY_LIMIT: {{ .Values.java.memoryLimit | quote }}
   MONGO_INDEX_MANAGER_MODE: AUTO
