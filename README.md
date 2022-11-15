@@ -1,1 +1,1 @@
-# helm-sto-manager
+src/gitops/README.md

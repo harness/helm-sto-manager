@@ -1,6 +1,6 @@
 # sto-manager
 
-![Version: 0.2.13](https://img.shields.io/badge/Version-0.2.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.778.0](https://img.shields.io/badge/AppVersion-1.778.0-informational?style=flat-square)
+![Version: 0.2.14](https://img.shields.io/badge/Version-0.2.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.778.0](https://img.shields.io/badge/AppVersion-1.778.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -14,6 +14,11 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| addOnImage.image.digest | string | `""` |  |
+| addOnImage.image.pullPolicy | string | `"IfNotPresent"` |  |
+| addOnImage.image.registry | string | `"docker.io"` |  |
+| addOnImage.image.repository | string | `"harness/ci-addon"` |  |
+| addOnImage.image.tag | string | `"1.14.19"` |  |
 | affinity | object | `{}` |  |
 | autoscaling.enabled | bool | `true` |  |
 | autoscaling.maxReplicas | int | `2` |  |
@@ -21,12 +26,13 @@ A Helm chart for Kubernetes
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | defaultInternalImageConnector | string | `"test"` |  |
 | fullnameOverride | string | `""` |  |
+| global.delegate.airgapped | bool | `false` |  |
 | global.loadbalancerURL | string | `"https://test"` |  |
 | image.digest | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/stomanager-signed"` |  |
-| image.tag | string | `"76000-000"` |  |
+| image.tag | string | `"77800-000"` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
 | ingress.enabled | bool | `false` |  |
@@ -36,6 +42,11 @@ A Helm chart for Kubernetes
 | ingress.tls | list | `[]` |  |
 | java.memory | int | `2500` |  |
 | java.memoryLimit | int | `600` |  |
+| leImage.image.digest | string | `""` |  |
+| leImage.image.pullPolicy | string | `"IfNotPresent"` |  |
+| leImage.image.registry | string | `"docker.io"` |  |
+| leImage.image.repository | string | `"harness/ci-lite-engine"` |  |
+| leImage.image.tag | string | `"1.14.22"` |  |
 | maxSurge | string | `"100%"` |  |
 | maxUnavailable | int | `0` |  |
 | mongoSecrets.password.key | string | `"mongodb-root-password"` |  |
@@ -76,7 +87,7 @@ A Helm chart for Kubernetes
 | securityImage.image.pullPolicy | string | `"IfNotPresent"` |  |
 | securityImage.image.registry | string | `"docker.io"` |  |
 | securityImage.image.repository | string | `"harness/sto-plugin"` |  |
-| securityImage.image.tag | string | `"latest"` |  |
+| securityImage.image.tag | string | `"1.1.5.dev1668454818"` |  |
 | service.grpcport | int | `9979` |  |
 | service.port | int | `7090` |  |
 | service.type | string | `"ClusterIP"` |  |
