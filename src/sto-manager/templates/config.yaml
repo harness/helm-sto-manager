@@ -57,6 +57,6 @@ data:
   {{- end}}
   ENFORCEMENT_CHECK_ENABLED: "false"
   PMS_SDK_ORCHESTRATION_EVENT_POOL_CORE_SIZE: "15"
-  S3_UPLOAD_IMAGE: {{ include "sto-manager.s3UploadImage" . }}
+  S3_UPLOAD_IMAGE: {{ include "common.images.image" (dict "imageRoot" .Values.s3UploadImage.image "global" .Values.global) | quote }}
   USE_DMS: "false"
-  SECURITY_IMAGE: {{ include "sto-manager.securityImage" . }}
+  SECURITY_IMAGE: {{ include "common.images.image" (dict "imageRoot" .Values.securityImage.image "global" .Values.global) | quote }}
