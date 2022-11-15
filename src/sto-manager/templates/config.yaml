@@ -5,8 +5,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   DEPLOY_MODE: KUBERNETES_ONPREM
-  ADDON_IMAGE: {{ include "sto-manager.addOnImage" . }}
-  LE_IMAGE: {{ include "sto-manager.leImage" . }}
+  ADDON_IMAGE: {{ include "common.images.image" (dict "imageRoot" .Values.addOnImage.image "global" .Values.global) | quote }}
+  LE_IMAGE: {{ include "common.images.image" (dict "imageRoot" .Values.leImage.image "global" .Values.global) | quote }}
   MEMORY: {{ .Values.java.memory | quote }}
   MANAGER_TARGET: harness-manager:9879
   MANAGER_AUTHORITY: harness-manager:9879
