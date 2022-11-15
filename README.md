@@ -1,1 +1,1 @@
-src/gitops/README.md
+src/sto-manager/README.md
