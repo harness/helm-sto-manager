@@ -33,8 +33,23 @@ securityImage:
     registry: docker.io
     repository: harness/sto-plugin
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: 1.1.5.dev1668454818
     digest: ""
+addOnImage:
+  image:
+    registry: docker.io
+    repository: harness/ci-addon
+    pullPolicy: IfNotPresent
+    tag: "1.14.19"
+    digest: ""
+leImage:
+  image:
+    registry: docker.io
+    repository: harness/ci-lite-engine
+    pullPolicy: IfNotPresent
+    tag: "1.14.22"
+    digest: ""
+
 
 s3UploadImage:
   image:
