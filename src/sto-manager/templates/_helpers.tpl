@@ -84,3 +84,9 @@ Create the name of the s3 image to use
 {{- define "sto-manager.s3UploadImage" -}}
 {{ include "common.images.image" (dict "imageRoot" .Values.s3UploadImage.image "global" .Values.global) }}
 {{- end }}
+{{- define "sto-manager.addOnImage" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.addOnImage.image "global" .Values.global) }}
+{{- end }}
+{{- define "sto-manager.leImage" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.leImage.image "global" .Values.global) }}
+{{- end }}

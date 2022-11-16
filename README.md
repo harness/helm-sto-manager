@@ -1,1 +1,1 @@
-# helm-sto-manager
+src/sto-manager/README.md
