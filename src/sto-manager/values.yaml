@@ -26,7 +26,7 @@ waitForInitContainer:
     repository: harness/helm-init-container
     pullPolicy: IfNotPresent
     tag: "latest"
-    digest: ""
+    digest: ""git diff
 
 securityImage:
   image:
@@ -35,6 +35,7 @@ securityImage:
     pullPolicy: IfNotPresent
     tag: latest
     digest: ""
+
 addOnImage:
   image:
     registry: docker.io
@@ -42,6 +43,7 @@ addOnImage:
     pullPolicy: IfNotPresent
     tag: "1.14.19"
     digest: ""
+
 leImage:
   image:
     registry: docker.io
@@ -49,7 +51,6 @@ leImage:
     pullPolicy: IfNotPresent
     tag: "1.14.22"
     digest: ""
-
 
 s3UploadImage:
   image:
