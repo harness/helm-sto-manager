@@ -12,7 +12,7 @@ data:
   MANAGER_AUTHORITY: harness-manager:9879
   MANAGER_URL: 'http://harness-manager.{{ .Release.Namespace }}.svc.cluster.local:9090/api/'
   VERIFICATION_SERVICE_SECRET: 67d9b94d9856665afc21acd3aa745401
-  SCM_SERVICE_URI: "scm:8091"
+  SCM_SERVICE_URI: "scm-service:8091"
   LOG_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/gateway/log-service/'
   LOG_SERVICE_INTERNAL_ENDPOINT: 'http://log-service.{{ .Release.Namespace }}.svc.cluster.local:8079/'
   TI_SERVICE_ENDPOINT: '{{ .Values.global.loadbalancerURL }}/ti-service/'
